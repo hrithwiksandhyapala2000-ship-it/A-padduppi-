@@ -1,0 +1,268 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>എന്റെ സ്വന്തം പഠിപ്പി</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #5b4bc4;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5546c7;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .welcome-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #f5f6ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+        }
+
+        .card strong {
+            color: #5b4bc4;
+        }
+
+        .small-text {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PAGE 1 : LOGIN -->
+    <div id="page1" class="page active">
+
+        <div class="logo">എന്റെ സ്വന്തം പഠിപ്പി</div>
+
+        <div class="subtitle">
+            നിങ്ങളുടെ പഠന യാത്ര ഇവിടെ തുടങ്ങാം 📚
+        </div>
+
+        <h2>Login</h2>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="നിങ്ങളുടെ പേര്"
+        >
+
+        <input
+            type="text"
+            id="contact"
+            placeholder="Mobile Number / Email ID"
+        >
+
+        <button onclick="goToPage2()">
+            Login →
+        </button>
+
+        <div class="small-text">
+            നിങ്ങളുടെ വിവരങ്ങൾ നൽകി തുടരുക
+        </div>
+
+    </div>
+
+
+    <!-- PAGE 2 : STUDENT DETAILS -->
+    <div id="page2" class="page">
+
+        <div class="logo">എന്റെ സ്വന്തം പഠിപ്പി</div>
+
+        <h2>നിങ്ങളെ കുറിച്ച്</h2>
+
+        <input
+            type="text"
+            id="study"
+            placeholder="നിങ്ങൾ എന്താണ് പഠിക്കുന്നത്?"
+        >
+
+        <input
+            type="text"
+            id="place"
+            placeholder="എവിടെയാണ് പഠിക്കുന്നത്?"
+        >
+
+        <button onclick="goToPage3()">
+            Continue →
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 3 : DASHBOARD -->
+    <div id="page3" class="page">
+
+        <div class="welcome">
+
+            <div class="welcome-icon">🎓</div>
+
+            <h2>Welcome!</h2>
+
+            <p id="welcomeName"></p>
+
+        </div>
+
+        <div class="card">
+            <strong>👤 പേര്</strong>
+            <p id="showName"></p>
+        </div>
+
+        <div class="card">
+            <strong>📚 പഠിക്കുന്നത്</strong>
+            <p id="showStudy"></p>
+        </div>
+
+        <div class="card">
+            <strong>🏫 പഠിക്കുന്ന സ്ഥലം</strong>
+            <p id="showPlace"></p>
+        </div>
+
+        <button onclick="alert('നിങ്ങളുടെ പഠന യാത്രയ്ക്ക് എല്ലാ ആശംസകളും! 📚🎓')">
+            Start Learning 🚀
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function goToPage2() {
+
+        let name = document.getElementById("name").value;
+        let contact = document.getElementById("contact").value;
+
+        if (name === "" || contact === "") {
+            alert("ദയവായി എല്ലാ വിവരങ്ങളും നൽകുക.");
+            return;
+        }
+
+        document.getElementById("page1").classList.remove("active");
+        document.getElementById("page2").classList.add("active");
+    }
+
+
+    function goToPage3() {
+
+        let study = document.getElementById("study").value;
+        let place = document.getElementById("place").value;
+
+        if (study === "" || place === "") {
+            alert("ദയവായി എല്ലാ വിവരങ്ങളും നൽകുക.");
+            return;
+        }
+
+        let name = document.getElementById("name").value;
+
+        document.getElementById("showName").innerText = name;
+        document.getElementById("showStudy").innerText = study;
+        document.getElementById("showPlace").innerText = place;
+
+        document.getElementById("welcomeName").innerText =
+            "ഹായ് " + name + "! നിങ്ങളുടെ പഠന യാത്രയിലേക്ക് സ്വാഗതം.";
+
+        document.getElementById("page2").classList.remove("active");
+        document.getElementById("page3").classList.add("active");
+    }
+
+</script>
+
+</body>
+</html>
